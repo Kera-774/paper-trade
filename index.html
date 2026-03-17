@@ -15,6 +15,7 @@ input[type=number]{-moz-appearance:textfield}
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appearance:none}
 .layout{display:flex;flex-direction:column;height:100vh}
 .main{display:grid;grid-template-columns:196px 1fr 240px;flex:1;overflow:hidden;min-height:0}
+/* header */
 .hdr{background:#0b0f1c;border-bottom:1px solid #111c2c;padding:9px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;flex-shrink:0}
 .logo{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:#00e07a;letter-spacing:.05em;white-space:nowrap}
 .logo span{color:#2a5a8a}
@@ -24,28 +25,41 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
 .sv{font-size:13px;font-weight:600;color:#dce8f8}
 .rbtn{background:none;border:1px solid #111c2c;color:#1e3050;padding:3px 9px;border-radius:2px;cursor:pointer;font-size:9px;font-family:'JetBrains Mono',monospace;transition:color .1s,border-color .1s}
 .rbtn:hover{color:#5a8ab0;border-color:#1e3a50}
+/* side panels */
 .side-l,.side-r{background:#09111e;overflow-y:auto;display:flex;flex-direction:column}
 .side-l{border-right:1px solid #0f1e30}
 .side-r{border-left:1px solid #0f1e30}
 .ph{padding:6px 12px;font-size:8px;color:#1e3045;letter-spacing:.12em;border-bottom:1px solid #0f1e30;text-transform:uppercase;flex-shrink:0}
+/* coin rows */
 .cr{padding:8px 12px;cursor:pointer;border-bottom:1px solid #0a1520;border-left:2px solid transparent;transition:background .1s}
 .cr:hover{background:#0d1826}
 .cr.sel{background:#0d1e32;border-left-color:#00e07a}
 .csym{font-weight:600;font-size:12px;color:#8ab0d0}
 .cr.sel .csym{color:#00e07a}
-.cprice{font-size:11px;color:#c8d8f0;font-weight:500;transition:color .25s}
+.cprice{font-size:11px;color:#c8d8f0;font-weight:500;transition:color .3s}
 .cname{font-size:9px;color:#1e3a50}
 .hbadge{font-size:9px;color:#0a4a28;margin-top:2px}
+/* center */
 .center{display:flex;flex-direction:column;overflow:hidden}
 .chdr{padding:8px 14px;border-bottom:1px solid #0f1e30;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;flex-shrink:0}
 .cbig{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#c8dff5}
 .pbig{font-size:17px;font-weight:600;transition:color .3s}
-.tfbar{display:flex;border-bottom:1px solid #0f1e30;background:#070b14;flex-shrink:0}
+/* timeframe bar */
+.tfbar{display:flex;border-bottom:1px solid #0f1e30;background:#070b14;flex-shrink:0;align-items:center}
 .tfb{flex:1;padding:6px 4px;background:none;border:none;border-bottom:2px solid transparent;color:#1e3045;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:color .1s}
 .tfb:hover{color:#5a8ab0}
 .tfb.act{color:#00e07a;border-bottom-color:#00e07a}
-.cwrap{flex-shrink:0;border-bottom:1px solid #0f1e30}
-.cempty{display:flex;align-items:center;justify-content:center;height:210px;color:#1e3a50;font-size:11px;padding:0 20px;text-align:center}
+/* chart container — IMPORTANT: position relative for overlay */
+.cwrap{position:relative;flex-shrink:0;border-bottom:1px solid #0f1e30;user-select:none}
+.cempty{display:flex;align-items:center;justify-content:center;height:220px;color:#1e3a50;font-size:11px;padding:0 20px;text-align:center}
+/* crosshair + tooltip (absolute, inside .cwrap) */
+#cxV{position:absolute;top:0;bottom:0;width:1px;background:rgba(140,180,220,0.14);pointer-events:none;display:none}
+#cxH{position:absolute;left:0;right:0;height:1px;background:rgba(140,180,220,0.14);pointer-events:none;display:none}
+#cxTip{position:absolute;pointer-events:none;display:none;background:#07111e;border:1px solid #1e2e42;border-radius:3px;padding:7px 10px;font-size:10px;line-height:1.7;white-space:nowrap;z-index:8}
+#cxPL{position:absolute;right:0;pointer-events:none;display:none;background:#0e1e30;border:1px solid #1e3045;border-left:none;border-radius:0 2px 2px 0;padding:2px 6px;font-size:9px;transform:translateY(-50%);z-index:8;white-space:nowrap}
+#cxTL{position:absolute;bottom:2px;pointer-events:none;display:none;background:#0e1e30;border:1px solid #1e3045;border-radius:2px;padding:2px 6px;font-size:9px;transform:translateX(-50%);z-index:8;white-space:nowrap}
+#chartOverlay{position:absolute;inset:0;cursor:crosshair;z-index:6}
+/* tabs */
 .tabbar{display:flex;border-bottom:1px solid #0f1e30;flex-shrink:0}
 .tabb{flex:1;padding:7px;background:none;border:none;border-bottom:2px solid transparent;color:#1e3045;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;text-transform:uppercase}
 .tabb.act{color:#00e07a;border-bottom-color:#00e07a}
@@ -57,6 +71,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
 .tbl td:first-child{text-align:left}
 .tbl tr:hover td{background:#0b1624}
 .empty{padding:24px;color:#1a3045;font-size:11px;text-align:center}
+/* trade panel */
 .ts{padding:11px}
 .stog{display:grid;grid-template-columns:1fr 1fr;margin-bottom:10px;border:1px solid #0f1e30;border-radius:3px;overflow:hidden}
 .stb{padding:9px;background:none;border:none;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;cursor:pointer;letter-spacing:.04em;color:#1e3045;border-bottom:2px solid transparent}
@@ -77,7 +92,8 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
 .exbtn:hover{opacity:.82}
 .posbox{margin-top:11px;padding:10px;background:#070b14;border-radius:3px;border:1px solid #0f1e30}
 .posttl{font-size:8px;color:#1a3045;letter-spacing:.1em;margin-bottom:6px;text-transform:uppercase}
-.logsec{background:#07090f;border-top:1px solid #0a1420;flex-shrink:0}
+/* logger */
+.logsec{background:#07090f;flex-shrink:0}
 .logtog{display:flex;align-items:center;gap:8px;padding:5px 14px;cursor:pointer;user-select:none;border-top:1px solid #0f1e30}
 .logtog:hover{background:#0a141e}
 .loglbl{font-size:8px;color:#1a3045;letter-spacing:.1em;text-transform:uppercase}
@@ -86,15 +102,19 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
 #logpanel{max-height:130px;overflow-y:auto;padding:6px 14px;display:none}
 .lrow{display:flex;gap:10px;padding:3px 0;border-bottom:1px solid #09141e;align-items:flex-start}
 .lts{color:#1a3045;white-space:nowrap;flex-shrink:0;font-size:9px;padding-top:1px}
-.lic{flex-shrink:0;font-size:9px;padding-top:1px}
 .ltxt{word-break:break-all;font-size:10px}
-.toast{position:fixed;top:12px;right:12px;z-index:9999;padding:8px 14px;border-radius:3px;font-size:11px;font-family:'JetBrains Mono',monospace;pointer-events:none;display:none;max-width:380px;word-break:break-word}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* toast */
+.toast{position:fixed;top:12px;right:12px;z-index:9999;padding:8px 14px;border-radius:3px;font-size:11px;font-family:'JetBrains Mono',monospace;pointer-events:none;display:none;max-width:400px;word-break:break-word}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .pulse{animation:pulse 2s ease-in-out infinite}
+/* chart refresh indicator */
+.chart-refreshing{opacity:.6;transition:opacity .2s}
 </style>
 </head>
 <body>
 <div class="layout">
+
+  <!-- HEADER -->
   <header class="hdr">
     <div class="logo">PAPER<span>TRADE</span></div>
     <div class="vdiv"></div>
@@ -105,32 +125,57 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
     <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
       <span id="livebadge" style="font-size:9px;color:#1e3a50">○ CHARGEMENT</span>
       <span id="updtime" style="font-size:9px;color:#1a3045"></span>
-      <button class="rbtn" onclick="App.loadPrices(true)">⟳ ACTUALISER</button>
+      <button class="rbtn" onclick="App.loadPrices(true)">⟳ PRIX</button>
       <button class="rbtn" onclick="App.reset()">↺ RESET</button>
     </div>
   </header>
 
+  <!-- MAIN GRID -->
   <main class="main">
+
+    <!-- LEFT: coin list -->
     <div class="side-l">
       <div class="ph">Marché — CoinGecko</div>
       <div id="coinList"></div>
     </div>
 
+    <!-- CENTER -->
     <div class="center">
       <div class="chdr">
         <span class="cbig" id="cPair">BTC/USD</span>
         <span class="pbig" id="cPrice" style="color:#dce8ff">—</span>
         <span id="cChg" style="font-size:11px;color:#1e3a50">—</span>
-        <span id="cHL" style="font-size:9px;color:#1e3a50;margin-left:6px"></span>
+        <span id="cHL" style="font-size:9px;color:#1a3045;margin-left:8px"></span>
+        <span id="chartStatus" style="margin-left:auto;font-size:8px;color:#1a3045"></span>
       </div>
+
+      <!-- Timeframe -->
       <div class="tfbar">
         <button class="tfb act" data-tf="1"  onclick="App.setTF('1',this)">1H</button>
         <button class="tfb"     data-tf="2"  onclick="App.setTF('2',this)">6H</button>
         <button class="tfb"     data-tf="7"  onclick="App.setTF('7',this)">12H</button>
         <button class="tfb"     data-tf="14" onclick="App.setTF('14',this)">24H</button>
-        <button class="tfb" style="flex:none;padding:6px 12px" onclick="App.loadChart()">⟳</button>
+        <button class="tfb" style="flex:none;padding:6px 12px;font-size:11px" onclick="App.forceChart()" title="Forcer rechargement">⟳</button>
       </div>
-      <div class="cwrap" id="chartWrap"><div class="cempty">Chargement…</div></div>
+
+      <!-- Chart — overlay elements live here permanently -->
+      <div class="cwrap" id="chartWrap">
+        <div id="chartSvg"><div class="cempty">Chargement…</div></div>
+        <!-- Crosshair vertical -->
+        <div id="cxV"></div>
+        <!-- Crosshair horizontal -->
+        <div id="cxH"></div>
+        <!-- OHLC tooltip -->
+        <div id="cxTip"></div>
+        <!-- Price label (Y axis) -->
+        <div id="cxPL"></div>
+        <!-- Time label (X axis) -->
+        <div id="cxTL"></div>
+        <!-- Transparent mouse capture overlay -->
+        <div id="chartOverlay"></div>
+      </div>
+
+      <!-- Tabs -->
       <div class="tabbar">
         <button class="tabb act" onclick="App.setTab('h',this)">Positions</button>
         <button class="tabb"     onclick="App.setTab('t',this)">Historique</button>
@@ -138,6 +183,7 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
       <div class="tabcont" id="tabCont"></div>
     </div>
 
+    <!-- RIGHT: order panel -->
     <div class="side-r">
       <div class="ph">Passer un ordre</div>
       <div class="ts">
@@ -165,267 +211,542 @@ input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{-webkit-appear
         <div id="posInfo"></div>
       </div>
     </div>
+
   </main>
 
+  <!-- LOG CONSOLE -->
   <div class="logsec">
     <div class="logtog" onclick="Logger.toggle()">
       <span id="logArrow" style="color:#1a3045;font-size:9px">▶</span>
       <span class="loglbl">Console de débogage</span>
       <span id="logBadge" style="display:none"></span>
-      <span style="margin-left:auto;font-size:8px;color:#1a3045">CoinGecko API • polling 10s • compatible France ✓</span>
+      <span style="margin-left:auto;font-size:8px;color:#1a3045">CoinGecko • prix /15s • chart temps réel • compatible France ✓</span>
     </div>
     <div id="logpanel"></div>
   </div>
 </div>
+
 <div id="toast" class="toast"></div>
 
 <script>
-/* ═══ LOGGER ═══ */
-const Logger={
-  logs:[],_open:false,
-  log(msg,lvl='info'){
-    const n=new Date(),ts=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
-    this.logs.unshift({ts,msg,lvl});
-    if(this.logs.length>100)this.logs.length=100;
+/* ═══════════════════════════════════════
+   LOGGER
+═══════════════════════════════════════ */
+const Logger = {
+  logs: [], _open: false,
+  C: {info:'#3a6a8a', success:'#00e07a', warn:'#e09000', error:'#ff3a5c'},
+  I: {info:'●', success:'✓', warn:'⚠', error:'✗'},
+
+  log(msg, lvl='info') {
+    const n = new Date();
+    const ts = [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+    this.logs.unshift({ts, msg, lvl});
+    if (this.logs.length > 120) this.logs.length = 120;
     this._badge();
-    if(this._open)this._render();
-    (lvl==='error'?console.error:lvl==='warn'?console.warn:console.log)(`[${ts}][${lvl}] ${msg}`);
+    if (this._open) this._render();
+    (lvl==='error' ? console.error : lvl==='warn' ? console.warn : console.log)(`[${ts}][${lvl}] ${msg}`);
   },
-  C:{info:'#3a6a8a',success:'#00e07a',warn:'#e09000',error:'#ff3a5c'},
-  I:{info:'●',success:'✓',warn:'⚠',error:'✗'},
-  _render(){
-    const el=document.getElementById('logpanel');if(!el)return;
-    el.innerHTML=this.logs.slice(0,50).map(e=>`<div class="lrow">
-      <span class="lts">${e.ts}</span>
-      <span class="lic" style="color:${this.C[e.lvl]}">${this.I[e.lvl]}</span>
-      <span class="ltxt" style="color:${this.C[e.lvl]}">${e.msg}</span>
-    </div>`).join('');
+
+  _render() {
+    const el = document.getElementById('logpanel'); if (!el) return;
+    el.innerHTML = this.logs.slice(0, 60).map(e =>
+      `<div class="lrow">
+        <span class="lts">${e.ts}</span>
+        <span style="flex-shrink:0;font-size:9px;padding-top:1px;color:${this.C[e.lvl]}">${this.I[e.lvl]}</span>
+        <span class="ltxt" style="color:${this.C[e.lvl]}">${e.msg}</span>
+      </div>`
+    ).join('');
   },
-  _badge(){
-    const b=document.getElementById('logBadge');if(!b)return;
-    const e=this.logs.filter(l=>l.lvl==='error').length;
-    const w=this.logs.filter(l=>l.lvl==='warn').length;
-    if(e){b.className='logerr';b.textContent=e+' erreur'+(e>1?'s':'');b.style.display='inline';}
-    else if(w){b.className='logwarn';b.textContent=w+' avert.';b.style.display='inline';}
-    else b.style.display='none';
+
+  _badge() {
+    const b = document.getElementById('logBadge'); if (!b) return;
+    const e = this.logs.filter(l=>l.lvl==='error').length;
+    const w = this.logs.filter(l=>l.lvl==='warn').length;
+    if (e)      { b.className='logerr';  b.textContent=e+' erreur'+(e>1?'s':'');   b.style.display='inline'; }
+    else if (w) { b.className='logwarn'; b.textContent=w+' avertissement'+(w>1?'s':''); b.style.display='inline'; }
+    else          b.style.display = 'none';
   },
-  toggle(){
-    this._open=!this._open;
-    const p=document.getElementById('logpanel'),a=document.getElementById('logArrow');
-    if(p)p.style.display=this._open?'block':'none';
-    if(a)a.textContent=this._open?'▼':'▶';
-    if(this._open)this._render();
+
+  toggle() {
+    this._open = !this._open;
+    const p=document.getElementById('logpanel'), a=document.getElementById('logArrow');
+    if (p) p.style.display = this._open ? 'block' : 'none';
+    if (a) a.textContent = this._open ? '▼' : '▶';
+    if (this._open) this._render();
   }
 };
 
-/* ═══ API — CoinGecko ═══
-   Pourquoi CoinGecko et pas Binance :
-   Binance.com est géo-bloqué en France depuis 2023 (retrait licence AMF).
-   CoinGecko est accessible partout, CORS libre, sans clé API.
-   Rate limit: ~10-30 req/min sur le tier gratuit.
-*/
-const API={
-  BASE:'https://api.coingecko.com/api/v3',
-  COINS:[
-    {id:'bitcoin',     sym:'BTC', name:'Bitcoin'},
-    {id:'ethereum',    sym:'ETH', name:'Ethereum'},
-    {id:'solana',      sym:'SOL', name:'Solana'},
-    {id:'binancecoin', sym:'BNB', name:'BNB'},
-    {id:'ripple',      sym:'XRP', name:'XRP'},
-    {id:'cardano',     sym:'ADA', name:'Cardano'},
-    {id:'dogecoin',    sym:'DOGE',name:'Dogecoin'},
-  ],
-  TF_LABEL:{'1':'1H','2':'6H','7':'12H','14':'24H'},
+/* ═══════════════════════════════════════
+   API — CoinGecko
+   (Binance géo-bloqué en France depuis 2023)
+═══════════════════════════════════════ */
+const API = {
+  BASE: 'https://api.coingecko.com/api/v3',
 
-  async getPrices(){
-    const ids=this.COINS.map(c=>c.id).join(',');
-    const url=`${this.BASE}/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_24hr_vol=true&include_high_24h=true&include_low_24h=true`;
+  COINS: [
+    {id:'bitcoin',     sym:'BTC',  name:'Bitcoin'},
+    {id:'ethereum',    sym:'ETH',  name:'Ethereum'},
+    {id:'solana',      sym:'SOL',  name:'Solana'},
+    {id:'binancecoin', sym:'BNB',  name:'BNB'},
+    {id:'ripple',      sym:'XRP',  name:'XRP'},
+    {id:'cardano',     sym:'ADA',  name:'Cardano'},
+    {id:'dogecoin',    sym:'DOGE', name:'Dogecoin'},
+  ],
+
+  TF: {'1':'1H', '2':'6H', '7':'12H', '14':'24H'},
+
+  /* OHLC cache — key: `${id}_${days}`, value: {ts, candles} */
+  _cache: {},
+  /* Serialise OHLC requests — one at a time */
+  _ohlcQueue: Promise.resolve(),
+  /* 429 back-off — timestamp until which we must wait */
+  _rateLimitUntil: 0,
+
+  /* ── Prix + variation 24h (un seul appel pour toutes les coins) ── */
+  async getPrices() {
+    const ids = this.COINS.map(c=>c.id).join(',');
+    const url = `${this.BASE}/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true&include_high_24h=true&include_low_24h=true`;
     Logger.log(`GET /simple/price — ${this.COINS.length} coins`);
-    const r=await this._fetch(url,'Prix CoinGecko');
-    const d=await r.json();
-    if(typeof d!=='object'||Array.isArray(d))throw new Error('Réponse JSON invalide');
-    const keys=Object.keys(d);
-    if(keys.length===0)throw new Error('Réponse vide — rate limit (429) probable, attendre 60s');
-    Logger.log(`Prix reçus: ${this.COINS.map(c=>c.sym+'=$'+(d[c.id]?.usd?.toFixed(2)??'?')).join(' ')},'success`);
+    const r = await this._fetch(url, 'Prix');
+    const d = await r.json();
+    if (typeof d !== 'object' || Array.isArray(d) || Object.keys(d).length === 0)
+      throw new Error('Réponse vide — rate limit probable, attendre 60s');
     return d;
   },
 
-  async getOHLC(id,days){
-    const url=`${this.BASE}/coins/${id}/ohlc?vs_currency=usd&days=${days}`;
+  /* ── OHLC avec cache 30s + file d'attente + retry ── */
+  async getOHLC(id, days) {
+    const key = `${id}_${days}`;
+    const cached = this._cache[key];
+    /* Serve from cache if < 30s old */
+    if (cached && Date.now() - cached.ts < 30000) {
+      Logger.log(`OHLC ${id}[${days}j] — cache (${((Date.now()-cached.ts)/1000).toFixed(0)}s)`);
+      return cached.candles;
+    }
+    /* Serialise: queue next request after current one */
+    const result = this._ohlcQueue.then(() => this._fetchOHLC(id, days, key));
+    this._ohlcQueue = result.catch(() => {});
+    return result;
+  },
+
+  async _fetchOHLC(id, days, key) {
+    /* Respect rate-limit back-off */
+    const wait = this._rateLimitUntil - Date.now();
+    if (wait > 0) {
+      Logger.log(`OHLC: attente rate-limit ${(wait/1000).toFixed(0)}s…`, 'warn');
+      await this._sleep(wait);
+    }
+
+    const url = `${this.BASE}/coins/${id}/ohlc?vs_currency=usd&days=${days}`;
     Logger.log(`GET /coins/${id}/ohlc?days=${days}`);
-    const r=await this._fetch(url,`OHLC ${id} days=${days}`);
-    const raw=await r.json();
-    if(!Array.isArray(raw)||raw.length<2)throw new Error(`Données OHLC vides pour ${id} (days=${days})`);
-    const candles=raw.map(([ts,o,h,l,c])=>({ts,o,h,l,c}));
-    Logger.log(`OHLC ${id}: ${candles.length} bougies | $${Math.min(...candles.map(c=>c.l)).toFixed(2)}–$${Math.max(...candles.map(c=>c.h)).toFixed(2)}`,'success');
+
+    let raw;
+    /* 2 tentatives: 1ère immédiate, 2ème après 4s */
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const r = await this._fetch(url, `OHLC ${id}`);
+        raw = await r.json();
+        break;
+      } catch(e) {
+        const is429 = e.message.includes('429');
+        const isNet = e.message.includes('Réseau') || e.message.includes('fetch');
+        if (attempt === 0 && (is429 || isNet)) {
+          const delay = is429 ? 8000 : 3000;
+          if (is429) this._rateLimitUntil = Date.now() + 60000;
+          Logger.log(`OHLC retry dans ${delay/1000}s (${e.message.slice(0,60)})`, 'warn');
+          await this._sleep(delay);
+        } else {
+          throw e;
+        }
+      }
+    }
+
+    if (!Array.isArray(raw) || raw.length < 2)
+      throw new Error(`Données OHLC insuffisantes pour ${id} (${raw?.length ?? 0} points)`);
+
+    const candles = raw.map(([ts,o,h,l,c]) => ({ts,o,h,l,c}));
+    this._cache[key] = {ts: Date.now(), candles};
+    Logger.log(`OHLC ${id}[${days}j]: ${candles.length} bougies $${Math.min(...candles.map(c=>c.l)).toFixed(2)}–$${Math.max(...candles.map(c=>c.h)).toFixed(2)}`, 'success');
     return candles;
   },
 
-  async _fetch(url,ctx){
+  /* Invalidate cache for a coin/tf so next load fetches fresh */
+  invalidateCache(id, days) {
+    delete this._cache[`${id}_${days}`];
+  },
+
+  async _fetch(url, ctx) {
     let r;
-    try{r=await fetch(url);}
-    catch(e){throw new Error(`[${ctx}] Réseau: ${e.message} — vérifier connexion internet`);}
-    if(r.status===429)throw new Error(`[${ctx}] Rate limit CoinGecko (429) — attendre 60 secondes`);
-    if(!r.ok){
-      let body='';try{body=await r.text();}catch(_){}
-      throw new Error(`[${ctx}] HTTP ${r.status}${body?' — '+body.slice(0,80):''}`);
+    try { r = await fetch(url); }
+    catch(e) { throw new Error(`[${ctx}] Réseau: ${e.message}`); }
+    if (r.status === 429) {
+      this._rateLimitUntil = Date.now() + 60000;
+      throw new Error(`[${ctx}] Rate limit CoinGecko (429) — attendre 60s`);
+    }
+    if (!r.ok) {
+      let body = ''; try { body = await r.text(); } catch(_) {}
+      throw new Error(`[${ctx}] HTTP ${r.status}${body ? ' — '+body.slice(0,80) : ''}`);
     }
     return r;
-  }
-};
-
-/* ═══ CHART ═══ */
-const Chart={
-  G:'#00e07a',R:'#ff3a5c',
-  render(id,candles){
-    const w=document.getElementById(id);if(!w)return;
-    if(!candles?.length){w.innerHTML='<div class="cempty">Aucune donnée</div>';return;}
-    const W=640,H=220,PL=72,PR=8,PT=10,PB=26;
-    const cW=W-PL-PR,cH=H-PT-PB,n=candles.length;
-    const minP=Math.min(...candles.map(c=>c.l))*.9997;
-    const maxP=Math.max(...candles.map(c=>c.h))*1.0003;
-    const rng=maxP-minP||1;
-    const sx=i=>PL+(n>1?i/(n-1):.5)*cW;
-    const sy=p=>PT+cH*(1-(p-minP)/rng);
-    const cw=Math.max(1.5,(cW/n)*.72);
-    const fP=v=>v>=100000?'$'+(v/1000).toFixed(0)+'k':v>=10000?'$'+(v/1000).toFixed(1)+'k':v>=1?'$'+v.toFixed(2):'$'+v.toFixed(5);
-    const fT=ts=>{const d=new Date(ts);return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');};
-    const yLvl=[0,.25,.5,.75,1].map(t=>minP+rng*t);
-    const xIdx=[0,Math.floor(n*.25),Math.floor(n*.5),Math.floor(n*.75),n-1];
-    let svg=`<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block">`;
-    yLvl.forEach(v=>{
-      const y=sy(v).toFixed(1);
-      svg+=`<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#0c1822" stroke-width="1"/>
-            <text x="${PL-5}" y="${(+y+3.5).toFixed(1)}" text-anchor="end" fill="#1e3a50" font-size="9" font-family="JetBrains Mono,monospace">${fP(v)}</text>`;
-    });
-    const lc=candles[candles.length-1];
-    svg+=`<line x1="${PL}" y1="${sy(lc.c).toFixed(1)}" x2="${W-PR}" y2="${sy(lc.c).toFixed(1)}" stroke="${lc.c>=lc.o?this.G:this.R}" stroke-width=".6" stroke-dasharray="3,3" opacity=".4"/>`;
-    candles.forEach((d,i)=>{
-      const x=sx(i).toFixed(2),bull=d.c>=d.o,clr=bull?this.G:this.R;
-      const yH=sy(d.h).toFixed(2),yL=sy(d.l).toFixed(2);
-      const yT=sy(Math.max(d.o,d.c)).toFixed(2),yB=sy(Math.min(d.o,d.c)).toFixed(2);
-      const bH=Math.max(1,+yB-+yT).toFixed(2);
-      svg+=`<line x1="${x}" y1="${yH}" x2="${x}" y2="${yL}" stroke="${clr}" stroke-width=".7" opacity=".5"/>
-            <rect x="${(+x-cw/2).toFixed(2)}" y="${yT}" width="${cw.toFixed(2)}" height="${bH}" fill="${bull?clr:'none'}" stroke="${clr}" stroke-width=".7" opacity=".9"/>`;
-    });
-    xIdx.forEach(i=>{if(candles[i])svg+=`<text x="${sx(i).toFixed(1)}" y="${H-8}" text-anchor="middle" fill="#1e3a50" font-size="8.5" font-family="JetBrains Mono,monospace">${fT(candles[i].ts)}</text>`;});
-    svg+='</svg>';
-    w.innerHTML=svg;
-  }
-};
-
-/* ═══ PORTFOLIO ═══ */
-const Ptf={
-  INIT:10000,cash:10000,holds:{},txs:[],
-  reset(){this.cash=this.INIT;this.holds={};this.txs=[];Logger.log('Portefeuille réinitialisé → $10,000','success');},
-  tv(prices){return this.cash+Object.entries(this.holds).reduce((s,[sym,h])=>s+h.qty*(prices[sym]??h.avgPrice),0);},
-  pnl(prices){const tv=this.tv(prices);return{tv,pnl:tv-this.INIT,pct:(tv-this.INIT)/this.INIT*100};},
-  hpnl(sym,p){
-    const h=this.holds[sym];if(!h)return null;
-    const val=h.qty*p,cost=h.qty*h.avgPrice,pnl=val-cost;
-    return{qty:h.qty,avg:h.avgPrice,val,cost,pnl,pct:pnl/cost*100};
   },
-  buy(sym,name,usd,price){
-    if(!price||price<=0)throw new Error(`Prix ${sym} non disponible — attendre le chargement`);
-    if(!usd||isNaN(usd)||usd<=0)throw new Error('Montant invalide — saisir un nombre positif');
-    if(usd>this.cash+0.001)throw new Error(`Solde insuffisant — disponible: $${this.cash.toFixed(2)}, requis: $${usd.toFixed(2)}`);
+
+  _sleep: ms => new Promise(r => setTimeout(r, ms))
+};
+
+/* ═══════════════════════════════════════
+   CHART — SVG chandeliers + hover
+═══════════════════════════════════════ */
+const Chart = {
+  G: '#00e07a', R: '#ff3a5c',
+  /* Dimensions viewBox */
+  W:640, H:220, PL:72, PR:8, PT:10, PB:26,
+  /* Stored render params for hover */
+  _p: null,
+  /* Stored candles for live update */
+  _candles: null,
+
+  /* Render SVG into #chartSvg (not the whole #chartWrap) */
+  render(candles) {
+    const svgEl = document.getElementById('chartSvg'); if (!svgEl) return;
+    if (!candles?.length) {
+      svgEl.innerHTML = '<div class="cempty">Aucune donnée</div>';
+      this._p = null; this._candles = null;
+      return;
+    }
+    this._candles = candles;
+    const {W,H,PL,PR,PT,PB} = this;
+    const cW = W-PL-PR, cH = H-PT-PB, n = candles.length;
+    const minP = Math.min(...candles.map(c=>c.l)) * 0.9997;
+    const maxP = Math.max(...candles.map(c=>c.h)) * 1.0003;
+    const rng  = maxP - minP || 1;
+    const sx   = i => PL + (n>1 ? i/(n-1) : 0.5) * cW;
+    const sy   = p => PT + cH * (1 - (p-minP)/rng);
+    const cw   = Math.max(1.5, (cW/n)*0.72);
+
+    /* Store params for hover handler */
+    this._p = {W,H,PL,PR,PT,PB,cW,cH,n,minP,maxP,rng,sx,sy,cw,candles};
+
+    const fP = v => v>=100000?'$'+(v/1000).toFixed(0)+'k': v>=10000?'$'+(v/1000).toFixed(1)+'k': v>=1?'$'+v.toFixed(2): '$'+v.toFixed(5);
+    const fT = ts => { const d=new Date(ts); return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); };
+    const yLvl = [0,.25,.5,.75,1].map(t => minP+rng*t);
+    const xIdx = [0, Math.floor(n*.25), Math.floor(n*.5), Math.floor(n*.75), n-1];
+
+    let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="display:block">`;
+
+    /* Y grid lines + labels */
+    yLvl.forEach(v => {
+      const y = sy(v).toFixed(1);
+      svg += `<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#0c1822" stroke-width="1"/>
+              <text x="${PL-5}" y="${(+y+3.5).toFixed(1)}" text-anchor="end" fill="#1e3a50" font-size="9" font-family="JetBrains Mono,monospace">${fP(v)}</text>`;
+    });
+
+    /* Last-price dashed line */
+    const lc = candles[n-1];
+    svg += `<line x1="${PL}" y1="${sy(lc.c).toFixed(1)}" x2="${W-PR}" y2="${sy(lc.c).toFixed(1)}" stroke="${lc.c>=lc.o?this.G:this.R}" stroke-width=".6" stroke-dasharray="3,3" opacity=".45"/>`;
+
+    /* Candles */
+    candles.forEach((d,i) => {
+      const x   = sx(i).toFixed(2), bull = d.c>=d.o, clr = bull?this.G:this.R;
+      const yH  = sy(d.h).toFixed(2), yL  = sy(d.l).toFixed(2);
+      const yT  = sy(Math.max(d.o,d.c)).toFixed(2), yB = sy(Math.min(d.o,d.c)).toFixed(2);
+      const bH  = Math.max(1, +yB - +yT).toFixed(2);
+      svg += `<line x1="${x}" y1="${yH}" x2="${x}" y2="${yL}" stroke="${clr}" stroke-width=".7" opacity=".5"/>
+              <rect x="${(+x-cw/2).toFixed(2)}" y="${yT}" width="${cw.toFixed(2)}" height="${bH}" fill="${bull?clr:'none'}" stroke="${clr}" stroke-width=".7" opacity=".9"/>`;
+    });
+
+    /* X time labels */
+    xIdx.forEach(i => {
+      if (candles[i]) svg += `<text x="${sx(i).toFixed(1)}" y="${H-8}" text-anchor="middle" fill="#1e3a50" font-size="8.5" font-family="JetBrains Mono,monospace">${fT(candles[i].ts)}</text>`;
+    });
+
+    svg += '</svg>';
+    svgEl.innerHTML = svg;
+  },
+
+  /* Called every price poll — updates last candle's close WITHOUT API call */
+  updateLivePrice(newPrice) {
+    if (!this._candles || !this._candles.length || !this._p) return;
+    const last = this._candles[this._candles.length - 1];
+    /* Only re-render if price actually changed */
+    if (last.c === newPrice) return;
+    last.c = newPrice;
+    if (newPrice > last.h) last.h = newPrice;
+    if (newPrice < last.l) last.l = newPrice;
+    this.render(this._candles);
+    Logger.log(`Chart: dernière bougie mise à jour → close $${newPrice.toFixed(2)}`);
+  },
+
+  /* Init hover — called once after DOM ready */
+  initHover() {
+    const overlay = document.getElementById('chartOverlay'); if (!overlay) return;
+    const fP = v => v>=100000?'$'+(v/1000).toFixed(0)+'k': v>=10000?'$'+(v/1000).toFixed(1)+'k': v>=1?'$'+v.toFixed(2): '$'+v.toFixed(5);
+
+    overlay.addEventListener('mousemove', e => {
+      const p = this._p; if (!p) return;
+
+      const wrap = document.getElementById('chartWrap');
+      const rect = wrap.getBoundingClientRect();
+
+      /* Mouse pos relative to container */
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+
+      /* Scale to viewBox coordinates */
+      const scaleX = p.W / rect.width;
+      const scaleY = p.H / rect.height;
+      const vx = mx * scaleX;
+      const vy = my * scaleY;
+
+      /* Is pointer inside chart area? */
+      if (vx < p.PL || vx > p.W-p.PR || vy < p.PT || vy > p.H-p.PB) {
+        this._hideHover(); return;
+      }
+
+      /* Find nearest candle index */
+      const rawIdx = (vx - p.PL) / p.cW * (p.n - 1);
+      const idx = Math.max(0, Math.min(p.n-1, Math.round(rawIdx)));
+      const candle = p.candles[idx];
+
+      /* Candle center X in pixels */
+      const candlePx = p.sx(idx) / p.W * rect.width;
+
+      /* Price at mouse Y */
+      const mousePrice = p.minP + (1 - (vy - p.PT) / p.cH) * p.rng;
+
+      /* ── Crosshair vertical (snaps to candle) ── */
+      const cxV = document.getElementById('cxV');
+      if (cxV) { cxV.style.left = candlePx.toFixed(1)+'px'; cxV.style.height = rect.height+'px'; cxV.style.top='0'; cxV.style.display='block'; }
+
+      /* ── Crosshair horizontal (follows mouse Y) ── */
+      const cxH = document.getElementById('cxH');
+      if (cxH) { cxH.style.top = my.toFixed(1)+'px'; cxH.style.display='block'; }
+
+      /* ── Price label on Y axis ── */
+      const cxPL = document.getElementById('cxPL');
+      if (cxPL) { cxPL.textContent = fP(mousePrice); cxPL.style.top = my.toFixed(1)+'px'; cxPL.style.color = mousePrice >= (p.candles[p.n-1]?.c||0) ? '#00e07a' : '#ff3a5c'; cxPL.style.display='block'; }
+
+      /* ── Time label on X axis ── */
+      const cxTL = document.getElementById('cxTL');
+      if (cxTL) {
+        const d = new Date(candle.ts);
+        const dateStr = `${d.getDate()}/${d.getMonth()+1} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        cxTL.textContent = dateStr;
+        cxTL.style.left = candlePx.toFixed(1)+'px';
+        cxTL.style.display = 'block';
+      }
+
+      /* ── OHLC Tooltip ── */
+      const tip = document.getElementById('cxTip');
+      if (tip) {
+        const bull = candle.c >= candle.o;
+        const clr  = bull ? '#00e07a' : '#ff3a5c';
+        const d = new Date(candle.ts);
+        const dateStr = `${d.getDate()}/${d.getMonth()+1} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+        tip.innerHTML = `
+          <div style="color:#5a8ab0;margin-bottom:4px;font-size:9px">${dateStr}</div>
+          <div style="display:grid;grid-template-columns:18px 1fr;gap:1px 8px">
+            <span style="color:#1e3a50">O</span><span style="color:${clr}">${fP(candle.o)}</span>
+            <span style="color:#1e3a50">H</span><span style="color:#00e07a">${fP(candle.h)}</span>
+            <span style="color:#1e3a50">L</span><span style="color:#ff3a5c">${fP(candle.l)}</span>
+            <span style="color:#1e3a50">C</span><span style="color:${clr};font-weight:600">${fP(candle.c)}</span>
+          </div>`;
+
+        /* Position tooltip: try right of crosshair, flip if near edge */
+        const tipW = 130, tipH = 90;
+        let tx = candlePx + 12;
+        let ty = my - tipH / 2;
+        if (tx + tipW > rect.width - 10) tx = candlePx - tipW - 12;
+        if (ty < 8) ty = 8;
+        if (ty + tipH > rect.height - 8) ty = rect.height - tipH - 8;
+        tip.style.left = tx.toFixed(1)+'px';
+        tip.style.top  = ty.toFixed(1)+'px';
+        tip.style.display = 'block';
+      }
+    });
+
+    overlay.addEventListener('mouseleave', () => this._hideHover());
+  },
+
+  _hideHover() {
+    ['cxV','cxH','cxTip','cxPL','cxTL'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.style.display = 'none';
+    });
+  }
+};
+
+/* ═══════════════════════════════════════
+   PORTFOLIO
+═══════════════════════════════════════ */
+const Ptf = {
+  INIT:10000, cash:10000, holds:{}, txs:[],
+  reset()  { this.cash=this.INIT; this.holds={}; this.txs=[]; Logger.log('Portefeuille réinitialisé → $10,000','success'); },
+  tv(prices) { return this.cash + Object.entries(this.holds).reduce((s,[sym,h])=>s+h.qty*(prices[sym]??h.avgPrice),0); },
+  pnl(prices) { const tv=this.tv(prices); return {tv, pnl:tv-this.INIT, pct:(tv-this.INIT)/this.INIT*100}; },
+  hpnl(sym,p) {
+    const h=this.holds[sym]; if(!h) return null;
+    const val=h.qty*p, cost=h.qty*h.avgPrice, pnl=val-cost;
+    return {qty:h.qty, avg:h.avgPrice, val, cost, pnl, pct:pnl/cost*100};
+  },
+  buy(sym,name,usd,price) {
+    if (!price||price<=0) throw new Error(`Prix ${sym} non disponible — attendre le chargement`);
+    if (!usd||isNaN(usd)||usd<=0) throw new Error('Montant invalide — saisir un nombre positif');
+    if (usd>this.cash+0.001) throw new Error(`Solde insuffisant — disponible: $${this.cash.toFixed(2)}, requis: $${usd.toFixed(2)}`);
     const qty=usd/price;
     this.cash-=usd;
-    if(!this.holds[sym])this.holds[sym]={qty:0,avgPrice:0,sym,name};
-    const h=this.holds[sym],nq=h.qty+qty;
-    h.avgPrice=(h.qty*h.avgPrice+qty*price)/nq;h.qty=nq;
+    if (!this.holds[sym]) this.holds[sym]={qty:0,avgPrice:0,sym,name};
+    const h=this.holds[sym], nq=h.qty+qty;
+    h.avgPrice=(h.qty*h.avgPrice+qty*price)/nq; h.qty=nq;
     this.txs.unshift({side:'buy',sym,qty,price,usd,ts:new Date()});
-    Logger.log(`Achat: +${qty.toFixed(6)} ${sym} @ $${price.toFixed(2)} | cash restant: $${this.cash.toFixed(2)}`,'success');
+    Logger.log(`Achat: +${qty.toFixed(6)} ${sym} @ $${price.toFixed(2)} | cash: $${this.cash.toFixed(2)}`,'success');
   },
-  sell(sym,usd,price){
-    if(!price||price<=0)throw new Error(`Prix ${sym} non disponible`);
-    if(!usd||isNaN(usd)||usd<=0)throw new Error('Montant invalide — saisir un nombre positif');
+  sell(sym,usd,price) {
+    if (!price||price<=0) throw new Error(`Prix ${sym} non disponible`);
+    if (!usd||isNaN(usd)||usd<=0) throw new Error('Montant invalide — saisir un nombre positif');
     const h=this.holds[sym];
-    if(!h||h.qty<=0)throw new Error(`Aucune position ouverte sur ${sym}`);
+    if (!h||h.qty<=0) throw new Error(`Aucune position ouverte sur ${sym}`);
     const maxUSD=h.qty*price;
-    if(usd>maxUSD+0.01)throw new Error(`Position insuffisante — max vendable: $${maxUSD.toFixed(2)} (${h.qty.toFixed(6)} ${sym})`);
-    const sq=Math.min(usd/price,h.qty),proc=sq*price;
+    if (usd>maxUSD+0.01) throw new Error(`Position insuffisante — max vendable: $${maxUSD.toFixed(2)} (${h.qty.toFixed(6)} ${sym})`);
+    const sq=Math.min(usd/price,h.qty), proc=sq*price;
     this.cash+=proc;
     const nq=h.qty-sq;
-    if(nq<1e-9)delete this.holds[sym];else h.qty=nq;
+    if (nq<1e-9) delete this.holds[sym]; else h.qty=nq;
     this.txs.unshift({side:'sell',sym,qty:sq,price,usd:proc,ts:new Date()});
     Logger.log(`Vente: -${sq.toFixed(6)} ${sym} @ $${price.toFixed(2)} | +$${proc.toFixed(2)} cash`,'success');
   }
 };
 
-/* ═══ APP ═══ */
-const App={
-  prices:{},changes:{},highs:{},lows:{},
-  flash:{},_ft:{},
-  sel:null,tf:'1',tab:'h',side:'buy',
-  _pollTimer:null,_busy:false,
-  G:'#00e07a',R:'#ff3a5c',
+/* ═══════════════════════════════════════
+   APP
+═══════════════════════════════════════ */
+const App = {
+  prices:{}, changes:{}, highs:{}, lows:{},
+  flash:{}, _ft:{},
+  sel:null, tf:'1', tab:'h', side:'buy',
+  _priceTimer: null,
+  _chartTimer:  null,
+  _chartDebounce: null,
+  _loadingPrices: false,
+  _lastChartLoad: 0,
+  G:'#00e07a', R:'#ff3a5c',
 
-  fU(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});},
-  fP(n){return(n>=0?'+':'')+Number(n).toFixed(2)+'%';},
-  col(n){return n>=0?this.G:this.R;},
+  fU(n)  { return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); },
+  fP(n)  { return (n>=0?'+':'')+Number(n).toFixed(2)+'%'; },
+  col(n) { return n>=0 ? this.G : this.R; },
 
-  async init(){
-    this.sel=API.COINS[0];
-    Logger.log('Démarrage PaperTrade — API: CoinGecko (compatible France)');
+  async init() {
+    this.sel = API.COINS[0];
+    Logger.log('Démarrage PaperTrade — CoinGecko API (compatible France)');
     this._renderCoinList();
     this._renderTabs();
     this._renderOrderPanel();
+
+    /* Init hover once */
+    Chart.initHover();
+
+    /* Initial load */
     await this.loadPrices(true);
-    await this.loadChart();
-    /* polling toutes les 10s */
-    this._pollTimer=setInterval(()=>this.loadPrices(false),10000);
-    Logger.log('Polling actif: actualisation prix toutes les 10 secondes','success');
+    await this.loadChart(false);
+
+    /* Prix toutes les 15s */
+    this._priceTimer = setInterval(() => this.loadPrices(false), 15000);
+    /* Chart full refresh toutes les 90s */
+    this._chartTimer = setInterval(() => this._autoRefreshChart(), 90000);
+    Logger.log('Timers actifs: prix /15s | chart /90s + mise à jour live','success');
   },
 
-  async loadPrices(manual){
-    if(this._busy)return;
-    this._busy=true;
-    try{
-      const data=await API.getPrices();
-      API.COINS.forEach(c=>{
-        const d=data[c.id];
-        if(!d){Logger.log(`Coin ${c.id} absent réponse`,'warn');return;}
-        const prev=this.prices[c.sym],np=d.usd;
-        if(prev!==undefined&&np!==prev){
-          this.flash[c.sym]=np>prev?'up':'down';
+  /* ── Prix ── */
+  async loadPrices(manual) {
+    if (this._loadingPrices) return;
+    this._loadingPrices = true;
+    try {
+      const data = await API.getPrices();
+      let selChanged = false;
+      API.COINS.forEach(c => {
+        const d = data[c.id]; if (!d) { Logger.log(`Coin ${c.id} absent réponse`,'warn'); return; }
+        const prev = this.prices[c.sym], np = d.usd;
+        if (prev !== undefined && np !== prev) {
+          this.flash[c.sym] = np > prev ? 'up' : 'down';
           clearTimeout(this._ft[c.sym]);
-          this._ft[c.sym]=setTimeout(()=>{this.flash[c.sym]=null;this._renderCoinList();},900);
+          this._ft[c.sym] = setTimeout(() => { this.flash[c.sym]=null; this._renderCoinList(); }, 900);
         }
-        this.prices[c.sym]=np;
-        this.changes[c.sym]=d.usd_24h_change??0;
-        this.highs[c.sym]=d.usd_24h_high??null;
-        this.lows[c.sym]=d.usd_24h_low??null;
+        this.prices[c.sym]  = np;
+        this.changes[c.sym] = d.usd_24h_change ?? 0;
+        this.highs[c.sym]   = d.usd_24h_high ?? null;
+        this.lows[c.sym]    = d.usd_24h_low  ?? null;
+        if (c.sym === this.sel.sym) selChanged = true;
       });
-      const now=new Date();
-      const el=document.getElementById('updtime');
-      if(el)el.textContent=`MàJ: ${[now.getHours(),now.getMinutes(),now.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':')}`;
-      const badge=document.getElementById('livebadge');
-      if(badge){badge.textContent='● LIVE';badge.style.color=this.G;badge.className='pulse';}
+      /* Update timestamp */
+      const now = new Date();
+      const el = document.getElementById('updtime');
+      if (el) el.textContent = `${[now.getHours(),now.getMinutes(),now.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':')}`;
+      const badge = document.getElementById('livebadge');
+      if (badge) { badge.textContent='● LIVE'; badge.style.color=this.G; badge.className='pulse'; }
+
       this._renderAll();
-    }catch(e){
+
+      /* Update last chart candle with current price (no API call) */
+      if (selChanged && this.prices[this.sel.sym]) {
+        Chart.updateLivePrice(this.prices[this.sel.sym]);
+      }
+    } catch(e) {
       Logger.log('loadPrices: '+e.message,'error');
-      this._toast('✗ Erreur prix: '+e.message,'err');
-      const badge=document.getElementById('livebadge');
-      if(badge){badge.textContent='✗ ERREUR';badge.style.color=this.R;badge.className='';}
-    }finally{this._busy=false;}
+      if (manual) this._toast('✗ Erreur prix: '+e.message,'err');
+      const badge = document.getElementById('livebadge');
+      if (badge) { badge.textContent='✗ ERREUR'; badge.style.color=this.R; badge.className=''; }
+    } finally {
+      this._loadingPrices = false;
+    }
   },
 
-  async loadChart(){
-    const w=document.getElementById('chartWrap');
-    if(w)w.innerHTML='<div class="cempty">Chargement des bougies…</div>';
-    try{
-      const candles=await API.getOHLC(this.sel.id,this.tf);
-      Chart.render('chartWrap',candles);
-    }catch(e){
+  /* ── Chart: load with debounce ── */
+  async loadChart(debounce=true) {
+    if (debounce) {
+      clearTimeout(this._chartDebounce);
+      this._chartDebounce = setTimeout(() => this._doLoadChart(), 350);
+    } else {
+      await this._doLoadChart();
+    }
+  },
+
+  async _doLoadChart() {
+    const svgEl = document.getElementById('chartSvg');
+    if (svgEl) svgEl.innerHTML = '<div class="cempty">Chargement des bougies…</div>';
+    const status = document.getElementById('chartStatus');
+    if (status) status.textContent = '⟳ chart…';
+    this._lastChartLoad = Date.now();
+    try {
+      const candles = await API.getOHLC(this.sel.id, this.tf);
+      Chart.render(candles);
+      if (status) status.textContent = `chart ${API.TF[this.tf]} · ${candles.length} bougies`;
+    } catch(e) {
       Logger.log('loadChart: '+e.message,'error');
-      const ww=document.getElementById('chartWrap');
-      if(ww)ww.innerHTML=`<div class="cempty" style="color:#ff3a5c">✗ Erreur chart: ${e.message}</div>`;
+      const svgEl2 = document.getElementById('chartSvg');
+      if (svgEl2) svgEl2.innerHTML = `<div class="cempty" style="color:#ff3a5c;flex-direction:column;gap:8px">
+        <span>✗ Erreur graphique</span>
+        <span style="font-size:9px;color:#3a3050">${e.message}</span>
+        <button onclick="App.forceChart()" style="margin-top:4px;padding:4px 10px;background:none;border:1px solid #1e3045;color:#3a6a8a;font-size:9px;cursor:pointer;border-radius:2px;font-family:'JetBrains Mono',monospace">Réessayer</button>
+      </div>`;
+      if (status) status.textContent = '✗ chart';
       this._toast('✗ Chart: '+e.message,'err');
     }
   },
 
-  _renderAll(){
+  /* Auto-refresh chart: invalidate cache first so we get fresh data */
+  _autoRefreshChart() {
+    Logger.log(`Chart auto-refresh (90s) — ${this.sel.id}[${this.tf}j]`);
+    API.invalidateCache(this.sel.id, this.tf);
+    this._doLoadChart();
+  },
+
+  /* Force full reload (⟳ button) */
+  forceChart() {
+    API.invalidateCache(this.sel.id, this.tf);
+    clearTimeout(this._chartDebounce);
+    this._doLoadChart();
+  },
+
+  /* ── Render ── */
+  _renderAll() {
     this._updateHeader();
     this._renderCoinList();
     this._updateCoinHdr();
@@ -433,22 +754,22 @@ const App={
     this._renderTabs();
   },
 
-  _updateHeader(){
-    const{tv,pnl,pct}=Ptf.pnl(this.prices);
-    const a=document.getElementById('hTotal');if(a)a.textContent=this.fU(tv);
+  _updateHeader() {
+    const {tv,pnl,pct} = Ptf.pnl(this.prices);
+    const a=document.getElementById('hTotal'); if(a) a.textContent=this.fU(tv);
     const b=document.getElementById('hPnl');
     if(b){b.textContent=`${pnl>=0?'+':''}${this.fU(pnl)}  (${this.fP(pct)})`;b.style.color=this.col(pnl);}
-    const c=document.getElementById('hCash');if(c)c.textContent=this.fU(Ptf.cash);
+    const c=document.getElementById('hCash'); if(c) c.textContent=this.fU(Ptf.cash);
     const posV=Object.entries(Ptf.holds).reduce((s,[sym,h])=>s+h.qty*(this.prices[sym]??h.avgPrice),0);
-    const d=document.getElementById('hPos');if(d)d.textContent=this.fU(posV);
+    const d=document.getElementById('hPos'); if(d) d.textContent=this.fU(posV);
   },
 
-  _renderCoinList(){
-    const el=document.getElementById('coinList');if(!el)return;
-    el.innerHTML=API.COINS.map(c=>{
-      const p=this.prices[c.sym],ch=this.changes[c.sym];
-      const sel=this.sel?.sym===c.sym,h=Ptf.holds[c.sym],fl=this.flash[c.sym];
-      const pc=fl==='up'?this.G:fl==='down'?this.R:'#c8d8f0';
+  _renderCoinList() {
+    const el=document.getElementById('coinList'); if(!el) return;
+    el.innerHTML = API.COINS.map(c => {
+      const p=this.prices[c.sym], ch=this.changes[c.sym];
+      const sel=this.sel?.sym===c.sym, h=Ptf.holds[c.sym], fl=this.flash[c.sym];
+      const pc = fl==='up'?this.G : fl==='down'?this.R : '#c8d8f0';
       return `<div class="cr${sel?' sel':''}" data-sym="${c.sym}" onclick="App.selectCoin('${c.sym}')">
         <div style="display:flex;justify-content:space-between;align-items:baseline">
           <span class="csym">${c.sym}</span>
@@ -463,36 +784,37 @@ const App={
     }).join('');
   },
 
-  _updateCoinHdr(){
-    const p=this.prices[this.sel.sym],ch=this.changes[this.sel.sym];
-    const pe=document.getElementById('cPrice'),fl=this.flash[this.sel.sym];
-    if(pe){pe.textContent=p?this.fU(p):'—';pe.style.color=fl?this.col(fl==='up'?1:-1):'#dce8ff';}
+  _updateCoinHdr() {
+    const p=this.prices[this.sel.sym], ch=this.changes[this.sel.sym];
+    const fl=this.flash[this.sel.sym];
+    const pe=document.getElementById('cPrice');
+    if(pe){pe.textContent=p?this.fU(p):'—'; pe.style.color=fl?this.col(fl==='up'?1:-1):'#dce8ff';}
     const ce=document.getElementById('cChg');
-    if(ce){ce.textContent=ch!==undefined?this.fP(ch)+' (24h)':'—';ce.style.color=ch!==undefined?this.col(ch):'#1e3a50';}
-    const cp=document.getElementById('cPair');if(cp)cp.textContent=this.sel.sym+'/USD';
+    if(ce){ce.textContent=ch!==undefined?this.fP(ch)+' (24h)':'—'; ce.style.color=ch!==undefined?this.col(ch):'#1e3a50';}
+    const cp=document.getElementById('cPair'); if(cp) cp.textContent=this.sel.sym+'/USD';
     const hl=document.getElementById('cHL');
-    if(hl){const hi=this.highs[this.sel.sym],lo=this.lows[this.sel.sym];hl.textContent=hi&&lo?`H:${this.fU(hi)}  L:${this.fU(lo)}`:'';};
+    if(hl){const hi=this.highs[this.sel.sym],lo=this.lows[this.sel.sym]; hl.textContent=hi&&lo?`H:${this.fU(hi)}  L:${this.fU(lo)}`:''; }
   },
 
-  _renderOrderPanel(){
+  _renderOrderPanel() {
     const p=this.prices[this.sel.sym];
-    const tp=document.getElementById('trPrice');if(tp)tp.textContent=p?this.fU(p):'—';
-    const ts=document.getElementById('trSym');if(ts)ts.textContent=this.sel.sym+'/USD';
-    this._updateAvail();this.onAmt();this._renderPosInfo();this._setSideLabel();
+    const tp=document.getElementById('trPrice'); if(tp) tp.textContent=p?this.fU(p):'—';
+    const ts=document.getElementById('trSym');   if(ts) ts.textContent=this.sel.sym+'/USD';
+    this._updateAvail(); this.onAmt(); this._renderPosInfo(); this._setSideLabel();
   },
 
-  _updateAvail(){
-    const el=document.getElementById('availInfo');if(!el)return;
-    const p=this.prices[this.sel.sym],h=Ptf.holds[this.sel.sym];
-    if(this.side==='buy')el.textContent=`Cash disponible: ${this.fU(Ptf.cash)}`;
-    else el.textContent=h&&p?`Position: ${this.fU(h.qty*p)} (${h.qty.toFixed(6)} ${this.sel.sym})`:`Aucune position sur ${this.sel.sym}`;
+  _updateAvail() {
+    const el=document.getElementById('availInfo'); if(!el) return;
+    const p=this.prices[this.sel.sym], h=Ptf.holds[this.sel.sym];
+    if(this.side==='buy') el.textContent=`Cash disponible: ${this.fU(Ptf.cash)}`;
+    else el.textContent = h&&p ? `Position: ${this.fU(h.qty*p)} (${h.qty.toFixed(6)} ${this.sel.sym})` : `Aucune position sur ${this.sel.sym}`;
   },
 
-  _renderPosInfo(){
-    const el=document.getElementById('posInfo');if(!el)return;
-    const h=Ptf.holds[this.sel.sym],p=this.prices[this.sel.sym];
+  _renderPosInfo() {
+    const el=document.getElementById('posInfo'); if(!el) return;
+    const h=Ptf.holds[this.sel.sym], p=this.prices[this.sel.sym];
     if(!h){el.innerHTML='';return;}
-    const pnl=Ptf.hpnl(this.sel.sym,p??h.avgPrice);
+    const pnl=Ptf.hpnl(this.sel.sym, p??h.avgPrice);
     el.innerHTML=`<div class="posbox">
       <div class="posttl">Position ouverte — ${this.sel.sym}</div>
       <div class="irow"><span class="ilbl">Quantité</span><span>${pnl.qty.toFixed(6)} ${this.sel.sym}</span></div>
@@ -503,15 +825,15 @@ const App={
       </div></div>`;
   },
 
-  _renderTabs(){
-    const el=document.getElementById('tabCont');if(!el)return;
+  _renderTabs() {
+    const el=document.getElementById('tabCont'); if(!el) return;
     if(this.tab==='h'){
       const ent=Object.entries(Ptf.holds);
       if(!ent.length){el.innerHTML='<div class="empty">Aucune position ouverte</div>';return;}
       el.innerHTML=`<table class="tbl"><thead><tr>
         <th style="text-align:left">Actif</th><th>Quantité</th><th>Prix moy.</th><th>Valeur</th><th>P&amp;L</th>
       </tr></thead><tbody>${ent.map(([sym,h])=>{
-        const p=this.prices[sym]??h.avgPrice,pnl=Ptf.hpnl(sym,p);
+        const p=this.prices[sym]??h.avgPrice, pnl=Ptf.hpnl(sym,p);
         return `<tr onclick="App.selectCoin('${sym}')" style="cursor:pointer">
           <td style="color:${this.G};font-weight:600">${sym}</td>
           <td>${pnl.qty.toFixed(6)}</td>
@@ -521,13 +843,13 @@ const App={
             <span style="font-size:9px;opacity:.75">(${this.fP(pnl.pct)})</span></td>
         </tr>`;
       }).join('')}</tbody></table>`;
-    }else{
+    } else {
       if(!Ptf.txs.length){el.innerHTML='<div class="empty">Aucune transaction</div>';return;}
       el.innerHTML=`<table class="tbl"><thead><tr>
         <th style="text-align:left">Heure</th><th style="text-align:left">Type</th>
         <th style="text-align:left">Actif</th><th>Qté</th><th>Prix</th><th>Montant</th>
       </tr></thead><tbody>${Ptf.txs.map(tx=>{
-        const d=tx.ts,hm=[d.getHours(),d.getMinutes(),d.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
+        const d=tx.ts, hm=[d.getHours(),d.getMinutes(),d.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':');
         return `<tr><td style="text-align:left;color:#1e3a50">${hm}</td>
           <td style="text-align:left;color:${tx.side==='buy'?this.G:this.R};font-weight:600">${tx.side==='buy'?'▲ ACHAT':'▼ VENTE'}</td>
           <td style="text-align:left;color:#8ab0d0">${tx.sym}</td>
@@ -537,69 +859,70 @@ const App={
     }
   },
 
-  selectCoin(sym){
-    const coin=API.COINS.find(c=>c.sym===sym);
-    if(!coin){Logger.log('selectCoin: symbole inconnu '+sym,'error');return;}
-    this.sel=coin;
+  /* ── Actions ── */
+  selectCoin(sym) {
+    const coin = API.COINS.find(c=>c.sym===sym);
+    if (!coin) { Logger.log('selectCoin: symbole inconnu '+sym,'error'); return; }
+    this.sel = coin;
     Logger.log('Actif sélectionné: '+sym);
     this._renderAll();
-    this.loadChart();
+    this.loadChart(true); /* debounced */
   },
 
-  setTF(tf,btn){
-    this.tf=tf;
-    document.querySelectorAll('.tfb').forEach(b=>b.classList.toggle('act',b.dataset.tf===tf));
-    Logger.log('Timeframe → '+API.TF_LABEL[tf]);
-    this.loadChart();
+  setTF(tf, btn) {
+    this.tf = tf;
+    document.querySelectorAll('.tfb').forEach(b=>b.classList.toggle('act', b.dataset.tf===tf));
+    Logger.log('Timeframe → '+API.TF[tf]);
+    this.loadChart(true); /* debounced */
   },
 
-  setTab(t,btn){
-    this.tab=t;
+  setTab(t, btn) {
+    this.tab = t;
     document.querySelectorAll('.tabb').forEach(b=>b.classList.remove('act'));
-    if(btn)btn.classList.add('act');
+    if (btn) btn.classList.add('act');
     this._renderTabs();
   },
 
-  setSide(s){
-    this.side=s;
-    const bb=document.getElementById('btnBuy'),bs=document.getElementById('btnSell');
-    if(bb)bb.className='stb'+(s==='buy'?' stb-ba':'');
-    if(bs)bs.className='stb'+(s==='sell'?' stb-sa':'');
+  setSide(s) {
+    this.side = s;
+    const bb=document.getElementById('btnBuy'), bs=document.getElementById('btnSell');
+    if(bb) bb.className='stb'+(s==='buy'?' stb-ba':'');
+    if(bs) bs.className='stb'+(s==='sell'?' stb-sa':'');
     const iw=document.getElementById('iwrap');
-    if(iw)iw.style.borderColor=s==='buy'?'#0a2a18':'#2a0a14';
+    if(iw) iw.style.borderColor = s==='buy'?'#0a2a18':'#2a0a14';
     document.getElementById('amtInput').value='';
-    this._setSideLabel();this._updateAvail();this.onAmt();
+    this._setSideLabel(); this._updateAvail(); this.onAmt();
   },
 
-  _setSideLabel(){
-    const eb=document.getElementById('exBtn');if(!eb)return;
+  _setSideLabel() {
+    const eb=document.getElementById('exBtn'); if(!eb) return;
     if(this.side==='buy'){
       eb.style.cssText='width:100%;padding:11px;border-radius:3px;font-family:JetBrains Mono,monospace;font-weight:700;font-size:11px;cursor:pointer;letter-spacing:.06em;background:#091e12;border:1px solid #00e07a;color:#00e07a';
       eb.textContent='▲ ACHETER '+this.sel.sym;
-    }else{
+    } else {
       eb.style.cssText='width:100%;padding:11px;border-radius:3px;font-family:JetBrains Mono,monospace;font-weight:700;font-size:11px;cursor:pointer;letter-spacing:.06em;background:#1e0a12;border:1px solid #ff3a5c;color:#ff3a5c';
       eb.textContent='▼ VENDRE '+this.sel.sym;
     }
   },
 
-  onAmt(){
+  onAmt() {
     const amt=parseFloat(document.getElementById('amtInput')?.value);
     const p=this.prices[this.sel.sym];
-    const el=document.getElementById('qPrev');if(!el)return;
+    const el=document.getElementById('qPrev'); if(!el) return;
     if(amt>0&&p){
       el.innerHTML=`<span style="color:#3a6a8a">Quantité ≈ </span><span style="color:#c0d8f0">${(amt/p).toFixed(6)} ${this.sel.sym}</span>`;
-    }else{
+    } else {
       el.innerHTML='<span style="color:#1e3a50">Saisir un montant en USD</span>';
     }
     this._updateAvail();
   },
 
-  setPct(pct){
+  setPct(pct) {
     const p=this.prices[this.sel.sym];
-    if(!p){this._toast('✗ Prix non chargé — attendre la prochaine actualisation','err');return;}
+    if(!p){this._toast('✗ Prix non chargé — attendre l\'actualisation','err');return;}
     let usd;
-    if(this.side==='buy'){usd=Ptf.cash*pct/100;}
-    else{
+    if(this.side==='buy'){ usd=Ptf.cash*pct/100; }
+    else {
       const h=Ptf.holds[this.sel.sym];
       if(!h){this._toast('✗ Aucune position à vendre sur '+this.sel.sym,'err');return;}
       usd=h.qty*p*pct/100;
@@ -608,43 +931,39 @@ const App={
     this.onAmt();
   },
 
-  order(){
+  order() {
     const price=this.prices[this.sel.sym];
     const usd=parseFloat(document.getElementById('amtInput').value);
-    if(!price){
-      Logger.log('Ordre bloqué: prix '+this.sel.sym+' indisponible','error');
-      this._toast('✗ Prix non disponible — attendre la prochaine actualisation (10s)','err');
-      return;
-    }
-    try{
-      if(this.side==='buy')Ptf.buy(this.sel.sym,this.sel.name,usd,price);
-      else Ptf.sell(this.sel.sym,usd,price);
+    if(!price){ Logger.log('Ordre: prix '+this.sel.sym+' indisponible','error'); this._toast('✗ Prix non disponible — attendre la prochaine actualisation','err'); return; }
+    try {
+      if(this.side==='buy') Ptf.buy(this.sel.sym, this.sel.name, usd, price);
+      else                  Ptf.sell(this.sel.sym, usd, price);
       document.getElementById('amtInput').value='';
       this._renderAll();
       this._toast(`✓ ${this.side==='buy'?'Achat':'Vente'} exécuté — ${this.sel.sym}`,'ok');
-    }catch(e){
+    } catch(e) {
       Logger.log(`Ordre refusé (${this.side} ${this.sel.sym}): ${e.message}`,'error');
       this._toast('✗ '+e.message,'err');
     }
   },
 
-  reset(){
-    if(!confirm('Réinitialiser le portefeuille à $10,000 ?'))return;
-    Ptf.reset();this._renderAll();
+  reset() {
+    if(!confirm('Réinitialiser le portefeuille à $10,000 ?')) return;
+    Ptf.reset(); this._renderAll();
     this._toast('Portefeuille réinitialisé → $10,000','ok');
   },
 
-  _toast(msg,type){
-    const el=document.getElementById('toast');if(!el)return;
-    el.textContent=msg;el.style.display='block';
+  _toast(msg,type) {
+    const el=document.getElementById('toast'); if(!el) return;
+    el.textContent=msg; el.style.display='block';
     el.style.background=type==='err'?'#1a0812':'#071a10';
     el.style.border='1px solid '+(type==='err'?this.R:this.G);
     el.style.color=type==='err'?this.R:this.G;
-    clearTimeout(el._t);el._t=setTimeout(()=>el.style.display='none',5000);
+    clearTimeout(el._t); el._t=setTimeout(()=>el.style.display='none',5000);
   }
 };
 
-document.addEventListener('DOMContentLoaded',()=>App.init());
+document.addEventListener('DOMContentLoaded', () => App.init());
 </script>
 </body>
 </html>
